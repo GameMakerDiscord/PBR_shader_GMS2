@@ -9,8 +9,8 @@ cux = 0;
 cuy = -1;
 cuz = 0;
 roll = 0;
-pitch = 0;
-rad = 10;
+pitch = 20;
+rad = 5;
 yaw = 0;
 
 var dw2 = display_get_width() / 2;

@@ -8,7 +8,7 @@ var dh2 = display_get_height() / 2;
 var mdx = mx - dw2;
 var mdy = my - dh2;
 display_mouse_set( dw2, dh2 );
-yaw += 1;//mdx * .5;
+yaw += mdx * .5;
 pitch -= mdy * .5;
 pitch = clamp( pitch, -89, 89 );
 
