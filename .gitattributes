@@ -1,4 +1,4 @@
 * text=auto
 *.obj binary
-*.yy  linguist-vendored=false
-*.yyp linguist-vendored=false
+*.yy  linguist-vendored
+*.yyp linguist-vendored
