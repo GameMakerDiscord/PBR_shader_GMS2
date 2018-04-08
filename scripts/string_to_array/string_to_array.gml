@@ -1,5 +1,6 @@
-/// @param string
-/// @param delimiter
+///@description return array of values from string using delimiter
+///@arg {string}    string
+///@arg {string}    delimiter
 var delim, str, pos, ind, a, len;
 str = argument0;
 delim = argument1;

@@ -1,4 +1,5 @@
-/// @description
+/// using mouse wheelup and wheeldown to change camera radius
+/// mouse axisx and axisy to change camera pitch and yaw
 if mouse_wheel_up() rad /= 1.1;
 if mouse_wheel_down() rad *= 1.1;
 var mx  = display_mouse_get_x();
@@ -12,6 +13,7 @@ yaw += mdx * .5;
 pitch -= mdy * .5;
 pitch = clamp( pitch, -89, 89 );
 
+/// calculate polara coordinates for camera
 cpx = -rad * dsin(yaw) * dcos(-pitch);
 cpy = -rad * dsin(-pitch);
 cpz = rad * dcos(yaw) * dcos(-pitch);

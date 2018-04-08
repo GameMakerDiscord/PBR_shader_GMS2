@@ -1,4 +1,5 @@
-/// @param filename
+///@description make vertex buffer from obj-file using filename
+///@arg {string}    filename
 var filename        = argument0;
 var file            = file_text_open_read( filename );
 var objects         = [];

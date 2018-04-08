@@ -18,6 +18,7 @@ const float PI = 3.141592653589793;
 const float PI2 = PI * 2.0;
 const float c_MinRoughness = 0.04;
 
+/// MICROFACET DISTRIBUTION
 float microfacetDistribution(float cos_theta, float rough_sqr) {
     float rough_quad = rough_sqr * rough_sqr;
     float cos_sqr = cos_theta * cos_theta;
@@ -25,6 +26,7 @@ float microfacetDistribution(float cos_theta, float rough_sqr) {
     return rough_quad / ( PI * k * k );
 }
 
+/// GEOMETRIC OCCLUSION
 float geometricOcclusion(float cos_theta, float rough_sqr) {
     float cos_sqr = cos_theta * cos_theta;
     float tan2 = ( 1. - cos_sqr ) / cos_sqr;
@@ -32,21 +34,25 @@ float geometricOcclusion(float cos_theta, float rough_sqr) {
     return geom;
 }
 
+/// SPECULAR REFLECTION
 vec3 specularReflection(float VH, vec3 reflectance0, vec3 reflectance90)
 {
     return reflectance0 + (reflectance90 - reflectance0) * pow(clamp(1.0 - VH, 0.0, 1.0), 5.0);
 }
 
+/// SRGB TO LINEAR
 vec4 srgb_to_linear( vec4 srgbIn )
 {
     vec3 linOut = pow(srgbIn.rgb, vec3(2.2));
     return vec4( linOut, srgbIn.a );
 }
 
+/// return uv for environment map using ray
 vec2 envMapEquirect( vec3 ray ) {
   return vec2((atan(ray.z, ray.x) / PI2 ) + 0.5, 1.0 - acos(ray.y) / PI );
 }
 
+/// return IBL contribution
 vec3 getIBLContribution(float roughness, float NV, vec3 in_diff, vec3 in_spec, vec3 n, vec3 reflection)
 {
     float lod = floor( roughness * 7.0 );
@@ -68,6 +74,7 @@ vec3 getIBLContribution(float roughness, float NV, vec3 in_diff, vec3 in_spec, v
     return diffuse_clr + specular_clr;
 }
 
+/// calculate normal
 vec3 getNormal()
 {
     vec3 pos_dx = dFdx( v_Position );
@@ -90,6 +97,7 @@ void main()
     float roughness = clamp(metalrough.g, c_MinRoughness, 1.0);
     float metallic = clamp(metalrough.b, 0.0, 1.0);
     float rough_sqr = roughness * roughness;
+    
     vec4 baseColor = srgb_to_linear( texture2D( gm_BaseTexture, v_UV ) );
     vec3 f0 = vec3(0.04);
     vec3 diffuseColor = baseColor.rgb * (vec3(1.0) - f0);
@@ -127,5 +135,6 @@ void main()
     /// EMISSION
     clr += srgb_to_linear(texture2D(u_emission, v_UV)).rgb;;
     
+    /// FINAL COLOR REINHARD
     gl_FragColor =  vec4( pow(clr,vec3(1.0/2.2)), 1.0 );
 }

@@ -1,5 +1,6 @@
-/// @param name
-/// @param params
+///@description set shader floats
+///@arg {string}    name
+///@arg {real}      Sparams
 var name    = argument[0];
 var uni     = shader_get_uniform( shader_current(), name );
 switch argument_count - 1

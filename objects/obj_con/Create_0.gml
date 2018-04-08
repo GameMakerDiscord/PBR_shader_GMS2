@@ -1,7 +1,8 @@
-/// @description
+
+// view settings
 application_surface_enable(false);
-var w = 1920;
-var h = 1080;
+var w = 1280;
+var h = 720;
 view_visible = true;
 view_enabled = true;
 var cam = view_camera;
@@ -12,9 +13,10 @@ view_hport = h;
 var px = (display_get_width() - w ) * .5;
 var py = (display_get_height() - h ) * .5;
 window_set_position( px, py );
-window_set_fullscreen(true);
+window_set_fullscreen(false);
 display_reset(0,1);
 
+// make vertex format
 vertex_format_begin();
 vertex_format_add_position_3d();
 vertex_format_add_normal();
@@ -22,20 +24,26 @@ vertex_format_add_texcoord();
 vertex_format_add_colour();
 global.vertex_format = vertex_format_end()
 
-cube = model_load_obj( ASSETS + "cube.obj" );
-
+// BRDF LUT texture
 tex_brdfLUT             = sprite_get_texture( spr_brdf_LUT, 0 );
+
+// Cloud radiance texture
 spr_radiance            = sprite_add( ASSETS + "clouds_radiance.jpg",0,false,true,0,0);
 tex_equirect_spec       = sprite_get_texture( spr_radiance, 0 );
 
+// loading helmet model and textures
 var name = "helmet";
 buff = model_load_obj(ASSETS + name + ".obj");
-tex_alb     = sprite_get_texture( sprite_add(ASSETS + name + "_alb.jpg",0,false,true,0,0), 0 );
-tex_arm     = sprite_get_texture( sprite_add(ASSETS + name + "_arm.jpg",0,false,true,0,0), 0 );
-tex_nrm     = sprite_get_texture( sprite_add(ASSETS + name + "_nrm.jpg",0,false,true,0,0), 0 );
-tex_emv     = sprite_get_texture( sprite_add(ASSETS + name + "_emv.jpg",0,false,true,0,0), 0 );
+spr_alb     = sprite_add(ASSETS + name + "_alb.jpg",0,false,true,0,0);
+spr_arm     = sprite_add(ASSETS + name + "_arm.jpg",0,false,true,0,0);
+spr_nrm     = sprite_add(ASSETS + name + "_nrm.jpg",0,false,true,0,0);
+spr_emv     = sprite_add(ASSETS + name + "_emv.jpg",0,false,true,0,0);
+tex_alb     = sprite_get_texture( spr_alb, 0 ); // albedo
+tex_arm     = sprite_get_texture( spr_arm, 0 ); // AO, rougness and metallness
+tex_nrm     = sprite_get_texture( spr_nrm, 0 ); // normal
+tex_emv     = sprite_get_texture( spr_emv, 0 ); // emissive
 
-angle = 0;
+/// GPU settings
 gpu_set_texfilter(true);
 gpu_set_texrepeat(true);
 gpu_set_zwriteenable(true);
