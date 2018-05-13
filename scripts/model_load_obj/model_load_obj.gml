@@ -34,7 +34,7 @@ while !file_text_eof( file )
             continue;
         break;
         case "v":
-            var data = [ -real(a[1]), real(a[2]), real(a[3]) ];
+            var data = [ real(a[1]), real(a[2]), real(a[3]) ];
             ds_list_add( vertex_list, data );
         break;
         case "vt":
@@ -42,7 +42,7 @@ while !file_text_eof( file )
             ds_list_add( textur_list, data );
         break;
         case "vn":
-            var data = [ -real(a[1]), real(a[2]), real(a[3]) ];
+            var data = [ real(a[1]), real(a[2]), real(a[3]) ];
             ds_list_add( normal_list, data );
         break;
         case "l":

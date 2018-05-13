@@ -1,6 +1,6 @@
 ## PBR shader for GMS2
 
-This is example of PBR shader for GMS2. It using Metallness / Rougness model.
+This is example of PBR shader for GMS2. It using Metallness / Roughness model.
 Implementation explained [here](https://github.com/KhronosGroup/glTF-WebGL-PBR).
 
 Maintained by: Alexander Kondyrev
