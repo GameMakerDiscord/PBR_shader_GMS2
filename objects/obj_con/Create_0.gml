@@ -48,7 +48,12 @@ gpu_set_texfilter(true);
 gpu_set_texrepeat(true);
 gpu_set_zwriteenable(true);
 gpu_set_ztestenable(true);
+gpu_set_blendenable(false);
 gpu_set_cullmode(cull_clockwise);
 gpu_set_tex_mip_filter( tf_anisotropic );
 
 instance_create_layer( x, y, layer, obj_camera );
+
+buff_cube   = model_load_gmf( ASSETS + "cube.gmf" );
+env_spr     = sprite_add(ASSETS + "clouds.jpg",0,false,true,0,0);
+env_tex     = sprite_get_texture( env_spr, 0 );
