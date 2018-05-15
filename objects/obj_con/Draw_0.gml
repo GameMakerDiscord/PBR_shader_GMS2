@@ -24,5 +24,6 @@ shader_set_sampler( "u_normal", tex_nrm );
 shader_set_sampler( "u_MetalicRoughnessSampler", tex_arm );
 var uni = shader_get_sampler_index( sha, "u_equirect_spec" ); /// this sampler shouldn't use mipmaps
 gpu_set_tex_max_mip_ext( uni, 0 );
+gpu_set_cullmode(cull_clockwise);
 vertex_submit( buff, pr_trianglelist, tex_alb );
 shader_reset();

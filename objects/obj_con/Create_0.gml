@@ -32,14 +32,14 @@ spr_radiance            = sprite_add( ASSETS + "clouds_radiance.jpg",0,false,tru
 tex_equirect_spec       = sprite_get_texture( spr_radiance, 0 );
 
 // loading helmet model and textures
-var name = "helmet";
-buff = model_load_obj(ASSETS + name + ".obj");
+var name    = "helmet";
+buff        = model_load_gmf(ASSETS + name + ".gmf");
 spr_alb     = sprite_add(ASSETS + name + "_alb.jpg",0,false,true,0,0);
 spr_arm     = sprite_add(ASSETS + name + "_arm.jpg",0,false,true,0,0);
 spr_nrm     = sprite_add(ASSETS + name + "_nrm.jpg",0,false,true,0,0);
 spr_emv     = sprite_add(ASSETS + name + "_emv.jpg",0,false,true,0,0);
 tex_alb     = sprite_get_texture( spr_alb, 0 ); // albedo
-tex_arm     = sprite_get_texture( spr_arm, 0 ); // AO, rougness and metallness
+tex_arm     = sprite_get_texture( spr_arm, 0 ); // r - ao, g - roughness, b - metallness
 tex_nrm     = sprite_get_texture( spr_nrm, 0 ); // normal
 tex_emv     = sprite_get_texture( spr_emv, 0 ); // emissive
 
@@ -48,7 +48,7 @@ gpu_set_texfilter(true);
 gpu_set_texrepeat(true);
 gpu_set_zwriteenable(true);
 gpu_set_ztestenable(true);
-gpu_set_cullmode(cull_counterclockwise);
+gpu_set_cullmode(cull_clockwise);
 gpu_set_tex_mip_filter( tf_anisotropic );
 
 instance_create_layer( x, y, layer, obj_camera );

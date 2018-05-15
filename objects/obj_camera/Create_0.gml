@@ -16,6 +16,6 @@ var dw2 = display_get_width() / 2;
 var dh2 = display_get_height() / 2;
 display_mouse_set( dw2, dh2 );
 
-buff_cube = model_load_obj( ASSETS + "cube.obj" );
-env_spr = sprite_add(ASSETS + "clouds.jpg",0,false,true,0,0);
-env_tex = sprite_get_texture( env_spr, 0 );
+buff_cube   = model_load_gmf( ASSETS + "cube.gmf" );
+env_spr     = sprite_add(ASSETS + "clouds.jpg",0,false,true,0,0);
+env_tex     = sprite_get_texture( env_spr, 0 );
